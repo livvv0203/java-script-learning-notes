@@ -42,3 +42,7 @@ window.addEventListener('beforeunload', function(e) {
     e.returnValue='Leaving???';
 })
 
+// Async and defer
+// Async - execute immediatly 
+// Differ - execution is deferred until the end of HTML parsing 
+
