@@ -1,18 +1,3 @@
-/* GET data using fetch API */
-
-/* 
-Promise - a container for an asynchronouly delivered value(future value) - ES6 feature
-Promise Advantages: 
-1. no longer need to rely on events and callbacks
-2. chain promise to escaping callback hell
-
-Promises are time sensitive: 
-1. PENDING - before the future value is available
-2. SETTLED - async task has finished - fulfilled or rejected 
-*/
-
-'use strict';
-
 const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
 
@@ -44,40 +29,38 @@ const renderError = function (msg) {
   // countriesContainer.style.opacity = 1;
 };
 
-// Helper function
-const getJSON = function (url, errorMsg = 'Someting went wrong') {
-  // getJSON function return a promise
-  return fetch(url).then(response => {
-    // Creating a new error
-    if (!response.ok)
-      // throw - immediately terminate the current function - promise will reject
-      throw new Error(`${errorMsg} (${response.status})`);
-
-    return response.json(); // will return a new promise
-  });
-};
-
 const getCountryData = function (country) {
   // Here, fetch API returns a promise obj, make the promise ready to be consume
   // call then method to handle promises
   // Country 1:
-  getJSON(`https://restcountries.com/v2/name/${country}`, 'Country not found!')
+  fetch(`https://restcountries.com/v2/name/${country}`)
+    .then(response => {
+      // Creating a new error
+      if (!response.ok)
+        // throw - immediately terminate the current function - promise will reject
+        throw new Error(`Country not found: (${response.status})`);
+
+      return response.json(); // will return a new promise
+    })
     .then(data => {
       console.log(data); // return of response.json() promise, will be the data itself
 
       renderCountry(data[0]);
       const neighbour = data[0].borders[0];
 
-      if (!neighbour) 
-        throw new Error('No neighbour found!'); 
+      if (!neighbour) return;
       // Country 2:
       // use fetch again, fetching by code
-      return getJSON(
-        `https://restcountries.com/v2/alpha/${neighbour}`,
-        'Country not found!'
-      ); // return a promise
+      return fetch(`https://restcountries.com/v2/alpha/${neighbour}`); // return a promise
     })
+    // handle the promise outside
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Country N not found! (${response.status})`);
+      }
 
+      return response.json();
+    })
     .then(data => renderCountry(data, 'neighbour'))
     .catch(
       // add catch at the end, to catch any err ocurrs in the promise chain
