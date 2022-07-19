@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini Todo</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        width: 100vh;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      ul {
+        list-style: decimal;
+        list-style-position: inside;
+        border: 1px solid black;
+        margin: 1rem;
+        border-radius: 0.5rem;
+        overflow: hidden;
+      }
+
+      .todo-wrapper {
+        width: 40rem;
+        height: 40rem;
+        border: 0.07rem solid black;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        overflow: scroll;
+      }
+
+      .todo-wrapper ul li {
+        margin: 1rem;
+        font-size: 1.2rem;
+        background: brown;
+        color: whitesmoke;
+      }
+
+      .input-form {
+        margin-bottom: 1rem;
+      }
+
+      .delete-btn {
+        margin-left: 1rem;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div>
+      <form class="input-form">
+        <label>Content</label>
+        <input class="input" />
+        <button class="btn-add">Add</button>
+      </form>
+      <button class="btn-try">Try</button>
+    </div>
+
+    <div class="todo-wrapper">
+      <ul>
+        <!-- <li>Test 1</li>
+        <li>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odit
+          perferendis mollitia odio? Assumenda et minus doloremque, voluptas
+          alias dicta corporis saepe enim ab illum laborum sequi perferendis rem
+          repellendus aliquid.
+        </li> -->
+      </ul>
+    </div>
+    <script src="./032-mini-todo.js"></script>
+  </body>
+</html>

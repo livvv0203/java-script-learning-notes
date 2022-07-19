@@ -1,16 +1,15 @@
-let timerEle = document.querySelector(".timer");
+// select timer ele
+let timerUI = document.querySelector('.timer');
+let time = 5; // seconds
 
-let time = 5; // sec
+const timer = setInterval(function() {
+  const min = String(Math.trunc(time / 60)).padStart(2, 0);
+  const sec = String(Math.trunc(time % 60)).padStart(2, 0);
 
-const timer = setInterval(function () {
-    
-    const sec = String(Math.trunc(time % 60)).padStart(2, 0);
-    const min = String(Math.trunc(time / 60)).padStart(2, 0);
-    
-    if ( time <= 0 ) clearInterval(timer);
-    time--;
+  if (time <= 0) clearInterval(timer);
+  time--;
+  timerUI.textContent = `${min} : ${sec}`;
 
-  timerEle.textContent = `${min} : ${sec}`;
 }, 1000);
 
 
