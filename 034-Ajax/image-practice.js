@@ -44,3 +44,13 @@ createImage('./img/img-1.jpg')
   })
   .then(() => (currentImg.style.display = 'none'))
   .catch(err => console.error(err));
+
+
+
+
+
+
+
+
+
+  
