@@ -54,9 +54,23 @@ const filter = (...args) => {
 
 console.log(filter(1, 2, 3));
 
+// Destructuring
+[a, b] = ['Hello', 'Jieqing'];
+console.log(a);
+console.log(b);
 
+// Practice
+const numbers = [1, 2, 3];
+[num1, , num3] = numbers;
+console.log(num1, num3);
 
+// array function - map
+const arr1 = [1, 2, 3];
+const arr1Double = arr1.map((el) => {
+    return el * 2;
+});
 
+console.log(arr1Double);
 
 
 
